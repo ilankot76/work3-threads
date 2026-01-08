@@ -1,7 +1,9 @@
-package task4;
+package assig3_4;
 
 public class Worker implements Runnable {
-    public enum Kind { A, B, C, D }
+    public enum Kind {
+        A, B, C, D
+    }
 
     private final Coordinator coordinator;
     private final Kind kind;

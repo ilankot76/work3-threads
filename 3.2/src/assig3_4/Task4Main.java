@@ -1,4 +1,4 @@
-package task4;
+package assig3_4;
 
 public class Task4Main {
     public static void main(String[] args) {
