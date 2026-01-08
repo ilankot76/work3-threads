@@ -6,11 +6,13 @@ public class GamePlay implements Runnable {
     private int rounds_counter;
 
     public void makeCoinAvail(boolean val) {
-        if (val) {
-            Coin_avilable = true;
-            notifyAll();
-        } else
-            Coin_avilable = false;
+        synchronized (lock) {
+            if (val) {
+                Coin_avilable = true;
+                notifyAll();
+            } else
+                Coin_avilable = false;
+        }
     }
 
     @Override
@@ -49,7 +51,9 @@ public class GamePlay implements Runnable {
     }
 
     public int getnumberofrounds() {
-        return rounds_counter;
+        synchronized (lock) {
+            return rounds_counter;
+        }
     }
 
 }

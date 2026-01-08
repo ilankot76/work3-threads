@@ -1,22 +1,34 @@
 package assig3_2;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) throws InterruptedException {
         GamePlay gameplay = new GamePlay();
-        Judge j = new Judge(gameplay);
-        Gamer gamer1 = new Gamer(gameplay);
-        Gamer gamer2 = new Gamer(gameplay);
+        Gamer g1 = new Gamer(gameplay);
+        Gamer g2 = new Gamer(gameplay);
+        Judge judge = new Judge(gameplay);
 
-        Thread gamerThread1 = new Thread(gamer1, "Gamer-1");
-        Thread gamerThread2 = new Thread(gamer2, "Gamer-2");
-        Thread judgeThread = new Thread(j, "Judge");
-        gamerThread1.start();
-        gamerThread2.start();
-        judgeThread.start();
+        Thread t1 = new Thread(g1, "player 1");
+        Thread t2 = new Thread(g2, "player 2");
+        Thread tj = new Thread(judge, "Judge");
 
-        System.out.println("Gamer 1 Score: " + gamer1.getScore());
-        System.out.println("Gamer 2 Score: " + gamer2.getScore());
+        tj.start();
+        t1.start();
+        t2.start();
 
+        t1.join();
+        t2.join();
+
+        tj.interrupt();
+        tj.join();
+
+        int s1 = g1.getScore();
+        int s2 = g2.getScore();
+
+        if (s1 > s2)
+            System.out.println("player 1 wins");
+        else if (s2 > s1)
+            System.out.println("player 2 wins");
+        else
+            System.out.println("tie");
     }
 }

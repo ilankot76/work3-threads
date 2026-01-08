@@ -4,10 +4,12 @@ public class Gamer implements Runnable {
     private GamePlay gameplay;
     private int goodflipscounter;
 
-    public void play() {
+    public synchronized void play() {
         while (gameplay.getnumberofrounds() < 10 && Thread.currentThread().isInterrupted() == false) {
             if (gameplay.coinflip()) {
                 goodflipscounter++;
+                System.out.println("Gamer " + Thread.currentThread().getName()
+                        + " flipped a good coin! Total good flips: " + goodflipscounter);
             }
             try {
                 Thread.sleep(1000);

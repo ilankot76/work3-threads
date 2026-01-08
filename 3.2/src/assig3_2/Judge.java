@@ -12,7 +12,14 @@ public class Judge implements Runnable {
     public void run() {
         boolean rnd = Math.random() < 0.5;
         gameplay.makeCoinAvail(rnd);
-
+        try {
+            if (rnd)
+                Thread.sleep(500);
+            else
+                Thread.sleep(700);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
 }
