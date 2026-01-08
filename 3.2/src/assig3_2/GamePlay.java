@@ -1,3 +1,4 @@
+package assig3_2;
 
 public class GamePlay implements Runnable {
     private final Object lock = new Object();
@@ -14,6 +15,11 @@ public class GamePlay implements Runnable {
 
     @Override
     public void run() {
+    }
+
+    public GamePlay() {
+        Coin_avilable = true;
+        rounds_counter = 0;
     }
 
     public boolean coinflip() {
